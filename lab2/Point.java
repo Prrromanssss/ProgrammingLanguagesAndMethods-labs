@@ -1,3 +1,5 @@
+package lab2;
+
 public class Point {
     private double x, y;
 
@@ -7,7 +9,7 @@ public class Point {
     }
 
     public double getX() {
-        return this.x;
+        return x;
     }
 
     public void setX(double x) {
@@ -15,7 +17,7 @@ public class Point {
     }
 
     public double getY() {
-        return this.y;
+        return y;
     }
 
     public void setY(double y) {
