@@ -1,4 +1,4 @@
-package lab3a;
+package lab3_2;
 
 public class Vector3D implements Comparable<Vector3D> {
     private double x, y, z;

@@ -1,4 +1,4 @@
-package lab3a;
+package lab3_2;
 
 import java.util.Arrays;
 
