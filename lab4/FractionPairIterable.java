@@ -1,11 +1,14 @@
 package lab4;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 class FractionPairIterable implements Iterable<Fraction[]> {
-    private int maxDenominator;
+    private Fraction[] fractions;
 
-    public FractionPairIterable(int maxDenominator) {
-        this.maxDenominator = maxDenominator;
+    public FractionPairIterable(Fraction... fractions) {
+        this.fractions = fractions;
+        filterFractions();
     }
 
     @Override
@@ -14,32 +17,50 @@ class FractionPairIterable implements Iterable<Fraction[]> {
     }
 
     private class FractionPairIterator implements Iterator<Fraction[]> {
-        private int currentNumerator;
-        private int currentDenominator;
+        private int currentIndex1;
+        private int currentIndex2;
 
         public FractionPairIterator() {
-            this.currentNumerator = 1;
-            this.currentDenominator = maxDenominator;
+            this.currentIndex1 = 0;
+            this.currentIndex2 = 1;
         }
 
         @Override
         public boolean hasNext() {
-            return currentNumerator < currentDenominator;
+            return currentIndex1 < fractions.length - 1;
         }
 
         @Override
         public Fraction[] next() {
             Fraction[] pair = new Fraction[2];
-            pair[0] = new Fraction(currentNumerator, currentDenominator);
-            pair[1] = new Fraction(currentDenominator, currentNumerator);
+            pair[0] = fractions[currentIndex1];
+            pair[1] = fractions[currentIndex2];
 
-            currentNumerator++;
-            if (currentNumerator >= currentDenominator) {
-                currentNumerator = 1;
-                currentDenominator--;
-            }
+            currentIndex1 += 2;
+            currentIndex2 += 2;
 
             return pair;
+        }
+    }
+
+    private void filterFractions() {
+        List<Fraction[]> filteredFractions = new ArrayList<>();
+        for (int i = 0; i < fractions.length; i++) {
+            for (int j = i + 1; j < fractions.length; j++) {
+                if (fractions[i].multiply(fractions[j]) == 1.0) {
+                    Fraction[] pair = {fractions[i], fractions[j]};
+                    filteredFractions.add(pair);
+                    break;
+                }
+            }
+        }
+
+        Fraction[][] filteredFractionsArray = filteredFractions.toArray(new Fraction[0][2]);
+        fractions = new Fraction[filteredFractionsArray.length * 2];
+        int index = 0;
+        for (Fraction[] pair : filteredFractionsArray) {
+            fractions[index++] = pair[0];
+            fractions[index++] = pair[1];
         }
     }
 }
