@@ -16,17 +16,17 @@ public:
         return value == other.value;
     }
 
-    bool operator!=(const Symbol& other) const {
-        return value != other.value;
-    }
-
     bool operator<(const Symbol& other) const {
         return value < other.value;
     }
 
+    bool operator!=(const Symbol& other) const {
+        return value != other.value;
+    }
+
     // Операция ~
     Symbol operator~() const {
-        return Symbol('~' + value);
+        return Symbol(~value);
     }
 
     // Вывод в поток
