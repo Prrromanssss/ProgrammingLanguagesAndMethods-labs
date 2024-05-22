@@ -1,0 +1,22 @@
+digraph G {
+    A [color=blue];
+    B [color=red];
+    C [color=red];
+    D [color=green];
+    E [color=red];
+    F [color=blue];
+    G [color=red];
+    H [color=red];
+    I [color=red];
+    J [color=green];
+    A -> B;
+    B -> C;
+    C -> D;
+    D -> E;
+    E -> F;
+    F -> G;
+    G -> H;
+    H -> I;
+    I -> J;
+    J -> A;
+}

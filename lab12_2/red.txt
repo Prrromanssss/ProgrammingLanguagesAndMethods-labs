@@ -1,0 +1,2 @@
+help.dot: 6
+hello.dot: 2
